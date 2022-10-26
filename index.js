@@ -3,10 +3,10 @@ if (document.querySelector(".navbarigac")) {
     navbarigac.innerHTML = `
     <div class="logos">
         <div class="navbar-brand-igac">
-            <a href='https://www.igac.gov.co' target='_blank'><img alt='Logo IGAC' src='../../images/logo-igac.png'/></a>
+            <a href='https://www.igac.gov.co' target='_blank'><img alt='Logo IGAC' src='/images/logo-igac.png'/></a>
         </div>
         <div class="logoigac">
-            <a href="/index.html"><img src="../../images/logo.svg" alt="Expediciones Igac"></a>
+            <a href="/index.html"><img src="/images/logo.svg" alt="Expediciones Igac"></a>
         </div>
     </div>
     <button class='nav-bar-toggle-igac'>
@@ -62,7 +62,7 @@ if (document.querySelector(".footer")) {
     <div class='footer-container container'>
         <div class='row-footer'>
             <div class='bird-image'>
-                <img src='../../images/pajaro_igac.svg' alt=''>
+                <img src='/images/pajaro_igac.svg' alt=''>
             </div>
             <div class='content-footer'>
                 <div class='title'>

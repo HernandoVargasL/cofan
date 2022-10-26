@@ -499,10 +499,10 @@ footer .footer-container .botonAcceso:hover {
     align-items: center;
 }
 .origen .container-portada {
-    background-image: url('/../images/bg-portada.svg');
+    background-image: url('/images/bg-portada.svg');
 }
 .colombiaMapas .container-portada {
-    background-image: url('/../images/home/bg-portada.svg');
+    background-image: url('/images/home/bg-portada.svg');
 }
 .portada {
     width: 1170px;
