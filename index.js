@@ -1,3 +1,5 @@
+var map;
+
 if (document.querySelector(".navbarigac")) {
     const navbarigac = document.querySelector(".navbarigac");
     navbarigac.innerHTML = `
@@ -135,12 +137,54 @@ if (document.querySelector(".nav-bar-toggle-igac")) {
     });
 }
 
-$(".list__item").click(function() {
+$(".list__item").click(function () {
     $(this).toggleClass("active").prevAll().removeClass("active").addClass("done");
     if ($(this).hasClass("active")) {
         $(this).nextAll().removeClass("active").removeClass("done");
     }
 });
 
+$(document).ready(function () {
+    $.ajax({
+        url: "/data/cofan.json",
+        type: 'GET',
+        success: function (data) {
+            console.log(data);
+            mapCofan();
+        },
+        timeout: 20000,
+        error: function (err) {
+
+        }
+    });
+});
+
+function mapCofan() {
+
+    require([
+        "esri/map", "esri/toolbars/draw",
+        "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/PictureFillSymbol", "esri/symbols/CartographicLineSymbol",
+        "esri/graphic",
+        "esri/Color", "dojo/dom", "dojo/on", "dojo/domReady!"
+    ], function (
+        Map, Draw,
+        SimpleMarkerSymbol, SimpleLineSymbol,
+        PictureFillSymbol, CartographicLineSymbol,
+        Graphic,
+        Color, dom, on
+    ) {
+        map = new Map("viewDiv", {
+            basemap: "topo-vector", //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+            center: [-74.45, 4.75], // longitude, latitude
+            zoom: 5
+        });
+
+        var markerSymbol = new SimpleMarkerSymbol();
+        markerSymbol.setPath("M16,4.938c-7.732,0-14,4.701-14,10.5c0,1.981,0.741,3.833,2.016,5.414L2,25.272l5.613-1.44c2.339,1.316,5.237,2.106,8.387,2.106c7.732,0,14-4.701,14-10.5S23.732,4.938,16,4.938zM16.868,21.375h-1.969v-1.889h1.969V21.375zM16.772,18.094h-1.777l-0.176-8.083h2.113L16.772,18.094z");
+        markerSymbol.setColor(new Color("#00FFFF"));
+    });
 
 
+
+}
