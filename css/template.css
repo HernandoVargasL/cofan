@@ -1,6 +1,6 @@
 .aside {
     width: 25%;
-    padding: 70px 70px;
+    padding: 50px 30px;
     box-shadow: 3px 0px 9px 4px #babfb5;
     height: calc(100vh - 60px);
     overflow: auto;    
@@ -89,6 +89,7 @@
 .expediton__terms .expediton__terms--resume {
     color: #6484DD;
     font-size: 18px;
+    line-height: 18px;
     height: 18px;
 }
 
@@ -188,4 +189,41 @@
 
 .expediton__terms__list ol li:first-child {
   counter-reset: custom;
+}
+
+/*content*/
+.content {
+    width: 75%;
+}
+
+/*---- content ----*/
+@media (max-width: 768px) {
+    .aside {
+        width: 35%;
+        height: 100vh;
+        padding: 30px 10px;
+    }
+
+    .aside .title {
+        font-size: 20px;
+        height: inherit;
+        margin-bottom: 20px;
+    }
+
+    .expediton__terms .expedition__titles {
+        padding: 15px 10px;
+    }
+
+    .tab-content {
+        padding: 20px 10px;
+    }
+
+    .expediton__terms .expediton__terms--resume {
+        height: inherit;
+    }
+
+    .content {
+        width: 65%;
+        height: 100vh;
+    }    
 }
