@@ -63,9 +63,6 @@ if (document.querySelector(".footer")) {
     footerIgac.innerHTML = `
     <div class='footer-container container'>
         <div class='row-footer'>
-            <div class='bird-image'>
-                <img src='/images/pajaro_igac.svg' alt=''>
-            </div>
             <div class='content-footer'>
                 <div class='title'>
                     INSTITUTO GEOGRÁFICO AGUSTÍN CODAZZI
