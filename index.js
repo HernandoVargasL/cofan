@@ -1,4 +1,5 @@
 var map;
+var datosCofan;
 
 if (document.querySelector(".navbarigac")) {
     const navbarigac = document.querySelector(".navbarigac");
@@ -20,18 +21,18 @@ if (document.querySelector(".navbarigac")) {
         <li>
             <a class='inicio' href='/index.html'>Pueblo Cofan</a>
         </li>
+        </div>
         <li>
             <a class='dropdownToggle' href='#'>Acerca de</a>
             <ul class='dropDown'>
-                <li><a href='/preguntas_frecuentes/index.html'>&iquest;Por qu&eacute; tener un &uacute;nico origen?</a></li>
-                <li><a href='/preguntas_frecuentes/cual-es-la-proyeccion.html'>&iquest;Cu&aacute;l es la proyecci&oacute;n?</a></li>
-                <li><a href='/preguntas_frecuentes/cuales-son-sus-beneficios.html'>&iquest;Cu&aacute;les son sus beneficios?</a></li>
-                <li><a href='/preguntas_frecuentes/quienes-deben-adoptarlo.html'>&iquest;Qui&eacute;nes deben adoptarlo?</a></li>
-                <li><a href='/preguntas_frecuentes/otras-preguntas-frecuentes.html'>Otras preguntas frecuentes</a></li>
             </ul>
         </li>
-    </div>
-    `
+        `
+        // <li><a href='/preguntas_frecuentes/index.html'>&iquest;Por qu&eacute; tener un &uacute;nico origen?</a></li>
+        // <li><a href='/preguntas_frecuentes/cual-es-la-proyeccion.html'>&iquest;Cu&aacute;l es la proyecci&oacute;n?</a></li>
+        // <li><a href='/preguntas_frecuentes/cuales-son-sus-beneficios.html'>&iquest;Cu&aacute;les son sus beneficios?</a></li>
+        // <li><a href='/preguntas_frecuentes/quienes-deben-adoptarlo.html'>&iquest;Qui&eacute;nes deben adoptarlo?</a></li>
+        // <li><a href='/preguntas_frecuentes/otras-preguntas-frecuentes.html'>Otras preguntas frecuentes</a></li>
 };
 
 if (document.querySelector(".nav-underline")) {
@@ -146,7 +147,7 @@ $(document).ready(function () {
         url: "/data/cofan.json",
         type: 'GET',
         success: function (data) {
-            console.log(data);
+            datosCofan = data;
             mapCofan();
         },
         timeout: 20000,
@@ -159,13 +160,13 @@ $(document).ready(function () {
 function mapCofan() {
 
     require([
-        "esri/map", "esri/toolbars/draw",
+        "esri/map",
         "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
         "esri/symbols/PictureFillSymbol", "esri/symbols/CartographicLineSymbol",
         "esri/graphic",
         "esri/Color", "dojo/dom", "dojo/on", "dojo/domReady!"
     ], function (
-        Map, Draw,
+        Map, 
         SimpleMarkerSymbol, SimpleLineSymbol,
         PictureFillSymbol, CartographicLineSymbol,
         Graphic,
@@ -173,15 +174,25 @@ function mapCofan() {
     ) {
         map = new Map("viewDiv", {
             basemap: "topo-vector", //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
-            center: [-74.45, 4.75], // longitude, latitude
-            zoom: 5
+            center: [-76, 0], // longitude, latitude
+            zoom: 8
         });
 
-        var markerSymbol = new SimpleMarkerSymbol();
-        markerSymbol.setPath("M16,4.938c-7.732,0-14,4.701-14,10.5c0,1.981,0.741,3.833,2.016,5.414L2,25.272l5.613-1.44c2.339,1.316,5.237,2.106,8.387,2.106c7.732,0,14-4.701,14-10.5S23.732,4.938,16,4.938zM16.868,21.375h-1.969v-1.889h1.969V21.375zM16.772,18.094h-1.777l-0.176-8.083h2.113L16.772,18.094z");
-        markerSymbol.setColor(new Color("#00FFFF"));
+        var selLayer = new esri.layers.GraphicsLayer();
+        map.addLayer(selLayer);
+
+        const dato = datosCofan[0];
+
+        var myPoint = {"geometry":{"x":-76,"y":1,
+        "spatialReference":{"wkid":4326}},"attributes":{"XCoord":-76,
+        "YCoord":-2,"Nombre":dato.Nombre_COF, "Video": dato.Aspectos_Linguisticos.URL_Recurso_Audiovisual},"symbol":{"color":[255,0,0,128],
+        "size":12,"angle":0,"xoffset":0,"yoffset":0,"type":"esriSMS",
+        "style":"esriSMSSquare","outline":{"color":[0,0,0,255],"width":1,
+        "type":"esriSLS","style":"esriSLSSolid"}},
+        "infoTemplate":{"title":"Pueblo Cofán","content":"Latitude: ${YCoord} <br/>Longitude: ${XCoord} <br/> Nombre:${Nombre} <br/> Video:<a href='${Video}' target='_blank'>${Video}<a>"}};
+
+        var graphic = new Graphic(myPoint);
+        selLayer.add(graphic);
     });
-
-
 
 }
