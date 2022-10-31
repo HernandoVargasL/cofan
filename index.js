@@ -21,12 +21,12 @@ if (document.querySelector(".navbarigac")) {
         <li>
             <a class='inicio' href='/index.html'>Pueblo Cofan</a>
         </li>
-        </div>
         <li>
             <a class='dropdownToggle' href='#'>Acerca de</a>
             <ul class='dropDown'>
             </ul>
         </li>
+    </div>
         `
         // <li><a href='/preguntas_frecuentes/index.html'>&iquest;Por qu&eacute; tener un &uacute;nico origen?</a></li>
         // <li><a href='/preguntas_frecuentes/cual-es-la-proyeccion.html'>&iquest;Cu&aacute;l es la proyecci&oacute;n?</a></li>

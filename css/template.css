@@ -1,9 +1,32 @@
+.navbarigac {
+    z-index: 1000;
+}
+.footer {
+    z-index: 1000;
+}
 .aside {
-    width: 25%;
-    padding: 50px 30px;
+    width: 25%;    
+    box-shadow: 3px 0px 9px 4px #babfb5;        
+    z-index: 1;
     box-shadow: 3px 0px 9px 4px #babfb5;
-    height: calc(100vh - 60px);
-    overflow: auto;    
+    position: relative;
+    z-index: 100;
+    transition: transform 0.5s ease;    
+    transition: width 0.5s ease;    
+}
+
+.aside .aside__togglebutton {
+    position: absolute;
+    right: -25px;
+    top: 20px;
+    width: 25px;
+    height: 25px;
+    background: #3c3c3b;
+    border-radius: 0 50% 50% 0;
+}
+
+.aside .aside__togglebutton img {
+    transition: 0.5s all ease;
 }
 
 /*tabs*/
@@ -11,6 +34,12 @@
     margin-bottom: 45px;
     font-size: 25px;
     height: 25px;
+}
+
+.aside .aside__container {
+    overflow: auto;
+    height: calc(100vh - 60px);
+    padding: 50px 30px;
 }
 
 .aside .aside__container .nav-item {

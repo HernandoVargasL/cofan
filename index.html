@@ -32,7 +32,10 @@
     <nav class="navbarigac origen">
     </nav>
     <div class="d-flex">
-        <aside class="aside">
+        <aside id="aside" class="aside">
+            <div id="asideToggle" class="aside__togglebutton" onclick="functionToggle()">
+                <img src="/images/icon-toggle.svg" alt="">
+            </div>
             <div class="aside__container">
                 <div class="title">
                     Expedición COFAN, 2022
@@ -186,7 +189,7 @@
                 </div>
             </div>
         </aside>
-        <div class="content">
+        <div id="contentMap" class="content">
             <div id="viewDiv"></div>
             <!-- <div id="includedContent" class="p-5"></div> -->
         </div>
@@ -207,24 +210,23 @@
     <script src="/index.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('item').addEventListener('click', function (e) {
-                e.preventDefault();
-
-                var div = document.createElement('div');
-                div.id = 'content';
-                document.getElementById('includedContent').appendChild(div);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.onload = function () {
-                    div.innerHTML = this.response;
-                };
-
-                xhr.open('GET', 'Paso1.html', true);
-                xhr.send();
-            }, false);
-        }, false);
+        function functionToggle () {
+            let element = document.getElementById("asideToggle");
+            element.classList.toggle("active");
+            if ($("#asideToggle").hasClass("active")) {
+                document.getElementById("aside").style.width = "0";
+                document.getElementById("aside").style.transform = "translate(-100%)";
+                document.querySelector(".aside .aside__container").style.padding = "0";
+                document.getElementById("contentMap").style.width = "100%";
+                document.querySelector("#asideToggle img").style.transform = "rotate(180deg)";
+            } else {
+                document.getElementById("aside").style.width = "25%";
+                document.getElementById("aside").style.transform = "none";
+                document.querySelector(".aside .aside__container").style.padding = "50px 30px";
+                document.getElementById("contentMap").style.width = "75%";
+                document.querySelector("#asideToggle img").style.transform = "rotate(0)";
+            }           
+        } 
     </script>
 
 </body>
