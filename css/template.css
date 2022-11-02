@@ -1,9 +1,11 @@
 .navbarigac {
     z-index: 1000;
 }
+
 .footer {
     z-index: 1000;
 }
+
 .aside {
     width: 25%;    
     box-shadow: 3px 0px 9px 4px #babfb5;        
@@ -11,8 +13,14 @@
     box-shadow: 3px 0px 9px 4px #babfb5;
     position: relative;
     z-index: 100;
-    transition: transform 0.5s ease;    
-    transition: width 0.5s ease;    
+    transition: all 0.5s ease;    
+}
+
+.aside.collapseAside {
+    width: 0;
+    transform: translate(-100%);
+    transition: all 0.5s ease;
+    box-shadow: none;  
 }
 
 .aside .aside__togglebutton {
@@ -40,6 +48,11 @@
     overflow: auto;
     height: calc(100vh - 60px);
     padding: 50px 30px;
+    transition: all 0.5s ease; 
+}
+
+.aside.collapseAside .aside__container {
+    padding: 50px 0px;
 }
 
 .aside .aside__container .nav-item {
@@ -223,19 +236,26 @@
 /*content*/
 .content {
     width: 75%;
+    transition: all 0.5s ease;
+}
+.content.collapseAside {
+    width: 100%;
+    transition: all 0.5s ease;
 }
 
 /*---- content ----*/
 @media (max-width: 768px) {
     .aside {
         width: 35%;
-        height: 100vh;
-        padding: 30px 10px;
+    }
+
+    .aside .aside__container {
+        padding: 20px 15px;
     }
 
     .aside .title {
         font-size: 20px;
-        height: inherit;
+        height: auto;
         margin-bottom: 20px;
     }
 
@@ -255,4 +275,20 @@
         width: 65%;
         height: 100vh;
     }    
+}
+
+@media (max-width: 425px) {
+    .aside {
+        width: 80%;
+        background: #ffffffb3;
+        backdrop-filter: blur(5px);
+    }
+
+    .content {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        right: 0;
+        left: 0;
+    } 
 }

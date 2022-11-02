@@ -142,6 +142,21 @@ $(".list__item").click(function () {
     }
 });
 
+
+/*--- toggle button ---*/
+function functionToggle () {
+    let element = document.getElementById("aside");
+    element.classList.toggle("collapseAside");
+    $("#contentMap").toggleClass("collapseAside");
+    if ($("#aside").hasClass("collapseAside")) {
+        document.querySelector("#asideToggle img").style.transform = "rotate(180deg)";
+    } else {
+        document.querySelector("#asideToggle img").style.transform = "rotate(0)";
+    }           
+} 
+    
+/*--- mapa ---*/
+
 $(document).ready(function () {
     $.ajax({
         url: "/data/cofan.json",

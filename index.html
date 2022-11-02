@@ -209,26 +209,6 @@
 
     <script src="/index.js"></script>
 
-    <script>
-        function functionToggle () {
-            let element = document.getElementById("asideToggle");
-            element.classList.toggle("active");
-            if ($("#asideToggle").hasClass("active")) {
-                document.getElementById("aside").style.width = "0";
-                document.getElementById("aside").style.transform = "translate(-100%)";
-                document.querySelector(".aside .aside__container").style.padding = "0";
-                document.getElementById("contentMap").style.width = "100%";
-                document.querySelector("#asideToggle img").style.transform = "rotate(180deg)";
-            } else {
-                document.getElementById("aside").style.width = "25%";
-                document.getElementById("aside").style.transform = "none";
-                document.querySelector(".aside .aside__container").style.padding = "50px 30px";
-                document.getElementById("contentMap").style.width = "75%";
-                document.querySelector("#asideToggle img").style.transform = "rotate(0)";
-            }           
-        } 
-    </script>
-
 </body>
 
 </html>
