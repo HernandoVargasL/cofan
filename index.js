@@ -203,18 +203,32 @@ function listCofan() {
     let strHTML = "";
     
     for (var i = 0; i < datosCofan.length; i++) {
-        strHTML = strHTML + "<li id='listItem' class='list__item'>";
+        strHTML = strHTML + "<li id='listItem_" + i +"' class='list__item'>";
         strHTML = strHTML + "<span>";
         strHTML = strHTML + "<div class='list__item--title'>" + dato[i].Nombre_ESP + "</div>";
         strHTML = strHTML + "<div class='list__item--title-resume'>" + dato[i].Nombre_COF + "</div>";
         strHTML = strHTML + "</span>";
         strHTML = strHTML + "</li>";
+
     }
-    $('#listItem:eq(i)').addClass('golden');
     $("#expeditonTermsList ol").html(strHTML);
+
+    
+    $(".list__item").click(function () {
+        $(this).toggleClass("active").prevAll().removeClass("active").addClass("done");
+        if ($(this).hasClass("active")) {
+            $(this).nextAll().removeClass("active").removeClass("done");
+        }
+    });
+
 };
 
-/*--- list button ---*/
+
+
+/*--- list button
+
+
+---*/
 
 
 /*--- toggle button ---*/
