@@ -135,26 +135,6 @@ if (document.querySelector(".nav-bar-toggle-igac")) {
     });
 }
 
-$(".list__item").click(function () {
-    $(this).toggleClass("active").prevAll().removeClass("active").addClass("done");
-    if ($(this).hasClass("active")) {
-        $(this).nextAll().removeClass("active").removeClass("done");
-    }
-});
-
-
-/*--- toggle button ---*/
-function functionToggle () {
-    let element = document.getElementById("aside");
-    element.classList.toggle("collapseAside");
-    $("#contentMap").toggleClass("collapseAside");
-    if ($("#aside").hasClass("collapseAside")) {
-        document.querySelector("#asideToggle img").style.transform = "rotate(180deg)";
-    } else {
-        document.querySelector("#asideToggle img").style.transform = "rotate(0)";
-    }           
-} 
-    
 /*--- mapa ---*/
 
 $(document).ready(function () {
@@ -164,6 +144,7 @@ $(document).ready(function () {
         success: function (data) {
             datosCofan = data;
             mapCofan();
+            listCofan();
         },
         timeout: 20000,
         error: function (err) {
@@ -204,10 +185,46 @@ function mapCofan() {
         "size":12,"angle":0,"xoffset":0,"yoffset":0,"type":"esriSMS",
         "style":"esriSMSSquare","outline":{"color":[0,0,0,255],"width":1,
         "type":"esriSLS","style":"esriSLSSolid"}},
-        "infoTemplate":{"title":"Pueblo Cofán","content":"Latitude: ${YCoord} <br/>Longitude: ${XCoord} <br/> Nombre:${Nombre} <br/> Video:<a href='${Video}' target='_blank'>${Video}<a>"}};
+
+        "infoTemplate":{"title":["<div class='d-flex align-items-center'>"+ "<div class='identificador'>"+ dato.ID + "</div>" + dato.Nombre_ESP + "</div>"],"content":"Latitude: ${YCoord} <br/>Longitude: ${XCoord} <br/> Nombre:${Nombre} <div class='d-flex'> Video:<a href='${Video}' target='_blank'>${Video}<a><div>"}};
+
+
 
         var graphic = new Graphic(myPoint);
         selLayer.add(graphic);
     });
 
 }
+
+
+
+function listCofan() {
+    const dato = datosCofan;
+    let strHTML = "";
+    
+    for (var i = 0; i < datosCofan.length; i++) {
+        strHTML = strHTML + "<li id='listItem' class='list__item'>";
+        strHTML = strHTML + "<span>";
+        strHTML = strHTML + "<div class='list__item--title'>" + dato[i].Nombre_ESP + "</div>";
+        strHTML = strHTML + "<div class='list__item--title-resume'>" + dato[i].Nombre_COF + "</div>";
+        strHTML = strHTML + "</span>";
+        strHTML = strHTML + "</li>";
+    }
+    $('#listItem:eq(i)').addClass('golden');
+    $("#expeditonTermsList ol").html(strHTML);
+};
+
+/*--- list button ---*/
+
+
+/*--- toggle button ---*/
+function functionToggle () {
+    let element = document.getElementById("aside");
+    element.classList.toggle("collapseAside");
+    $("#contentMap").toggleClass("collapseAside");
+    if ($("#aside").hasClass("collapseAside")) {
+        document.querySelector("#asideToggle img").style.transform = "rotate(180deg)";
+    } else {
+        document.querySelector("#asideToggle img").style.transform = "rotate(0)";
+    }           
+} 
